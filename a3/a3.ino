@@ -3,8 +3,8 @@
 #define Current_sensor A0 //Sensor data pin on A0 analog input
 #define Voltage_sensor A1 //Sensor data pin on A1 analog input
 
-float Current_Value; //Here we keep the raw data values
-float Voltage_Value;
+float Current_Value; //Here we keep the raw data values of current
+float Voltage_Value; //Here we keep the raw data values of voltage
 float testFrequency = 50;   // test signal frequency (Hz)
 float windowLength = 40.0 / testFrequency;  // how long to average the signal, for statistics
 float slope = 0.04965;  // to be adjusted based on calibration testing
@@ -12,14 +12,14 @@ float vslope = 0.7070;  // to be adjusted based on calibration testing
 //Please check the ACS712 Tutorial video by SurtrTech to see how to get them because it depends on your sensor, or look below
 
 float Amps_TRMS; // estimated actual current in amps
-float V_TRMS;
+float V_TRMS; // estimated actual voltage in v
 byte transdata[5];
 byte initbyte = 0x77; //front byte
 byte headerbyte = 0x01; //start byte
 byte endbyte = 0x88; //end byte
 
-RunningStatistics CurrentStats; // create statistics to look at the raw test signal
-RunningStatistics VoltageStats;
+RunningStatistics CurrentStats; // create Current statistics to look at the raw test signal
+RunningStatistics VoltageStats; // create Voltage statistics to look at the raw test signal
 
 
 unsigned long printPeriod = 1000; // in milliseconds
